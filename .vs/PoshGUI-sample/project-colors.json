@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "b2c73bab-ed5c-4512-823d-dc949c4224cc": {
+      "ProjectGuid": "b2c73bab-ed5c-4512-823d-dc949c4224cc",
+      "DisplayName": "PoshGUI-sample",
+      "ColorIndex": 0
+    }
+  },
+  "NextColorIndex": 1
+}
