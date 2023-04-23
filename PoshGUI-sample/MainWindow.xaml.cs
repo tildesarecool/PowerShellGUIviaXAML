@@ -26,7 +26,7 @@ namespace PoshGUI_sample
     {
         public MainWindow()
         {
-            InitializeComponent();
+           // InitializeComponent();
         }
     }
 }
