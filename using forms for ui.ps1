@@ -1,4 +1,31 @@
-﻿Add-Type -AssemblyName System.Windows.Forms, System.Drawing
+﻿Add-Type -AssemblyName System.Windows.Forms, System.Drawing #, System.Management.Automation
+
+
+
+<#
+if Get-WmiObject is not recognized, try 
+Get-CimInstance 
+as it seems to take the same arguments
+for instances
+Get-CimInstance -Class Win32_Bios  | Select-Object -ExpandProperty SerialNumber
+outputs the ST of a dell machine
+
+
+Labels: Display static text on a form
+Checkboxes: Allow the user to select one or more options from a list
+Radio buttons: Allow the user to select one option from a list
+List boxes: Display a list of items and allow the user to select one or more items
+Combo boxes: Display a drop-down list of items and allow the user to select one item
+Progress bars: Show the progress of a task
+Group boxes: Group related controls together
+Panels: Provide a container for other controls
+Menus: Provide a set of options that the user can select from
+Toolbars: Provide shortcuts to commonly used actions
+Tree views: Display hierarchical data
+Tab controls: Organize content into tabs
+
+#>
+
 
 # Load the moreicons.dll assembly
 #Add-Type -AssemblyName moreicons
@@ -14,17 +41,23 @@
 
 #############  setting an icon. just cuz (couldn't get the icon to work)
 
+$wnFormHeight = 480
+$wnFormWidth = 640
 
 ############# first create the window
 $Form = New-Object System.Windows.Forms.Form
 $Form.Text = "Documentor"
-$Form.ClientSize = New-Object System.Drawing.Size(640, 480)
+$Form.ClientSize = New-Object System.Drawing.Size($wnFormWidth, $wnFormHeight)
 
 ############# input text box at the top
 $TextBox = New-Object System.Windows.Forms.TextBox
 $TextBox.Location = New-Object System.Drawing.Point(10, 10)
 $TextBox.Size = New-Object System.Drawing.Size(300, 20)
 $Form.Controls.Add($TextBox)
+############# input text box at the top
+
+#$progbar = New-Object System.Windows.Forms.ProgressBar
+#$progbar.
 
 ############# query button under the text box
 $QButton = New-Object System.Windows.Forms.Button
@@ -32,6 +65,27 @@ $QButton.Text = "Query"
 $QButton.Location = New-Object System.Drawing.Point(10, 50)
 $QButton.Size = New-Object System.Drawing.Size(100, 30)
 $QButton.Add_Click({
+    
+    $computername = $TextBox.Text
+    $bios = Invoke-Command -ScriptBlock {  Get-CimInstance -Class Win32_Bios -ComputerName $computername | Select-Object -ExpandProperty SerialNumber }
+    
+try {
+        if ((Test-Connection -ComputerName $computername -Count 1 -Quiet)   ) { # -and ($bios)
+            if ($bios) {
+                $InfoLabel.Text = $bios
+            }
+
+        } elseif (!( $bios  )) {
+            $InfoLabel.Text = "Unable to ping"        
+        }
+} catch {
+        $InfoLabel.Text = "an error occurred while testing the connection: $($Error[0].Exception.Message)"
+    }
+
+    #$PCname = $TextBox.Text
+    #$InfoLabel.Text = $TextBox.Text
+    #Write-Host $env:systemroot
+    #$InfoLabel.Text = [string](Invoke-Command -ScriptBlock { Get-Date })
     # button click event handler code goes here
 })
 $Form.Controls.Add($QButton)
@@ -53,7 +107,7 @@ $InfoLabel.Text = "This is the new label"
 $InfoLabel.Location = New-Object System.Drawing.Point(10, 100)
 $InfoLabel.Size = New-Object System.Drawing.Size(600, 200)
 $InfoLabel.BorderStyle = [System.Windows.Forms.BorderStyle]::FixedSingle
-$InfoLabel.AutoSize = $false
+$InfoLabel.AutoSize = $true
 
 $Form.Controls.Add($InfoLabel)
 
