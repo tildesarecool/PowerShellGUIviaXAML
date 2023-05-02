@@ -53,6 +53,7 @@ $Form.ClientSize = New-Object System.Drawing.Size($wnFormWidth, $wnFormHeight)
 $TextBox = New-Object System.Windows.Forms.TextBox
 $TextBox.Location = New-Object System.Drawing.Point(10, 10)
 $TextBox.Size = New-Object System.Drawing.Size(300, 20)
+$TextBox.Text = "Enter PC name or IP"
 $Form.Controls.Add($TextBox)
 ############# input text box at the top
 
@@ -67,8 +68,16 @@ $QButton.Size = New-Object System.Drawing.Size(100, 30)
 $QButton.Add_Click({
     
     $computername = $TextBox.Text
-    $bios = Invoke-Command -ScriptBlock {  Get-CimInstance -Class Win32_Bios -ComputerName $computername | Select-Object -ExpandProperty SerialNumber }
+    $bios = Invoke-Command -ScriptBlock {  Get-CimInstance -Class Win32_Bios -ComputerName $computername | Select-Object -ExpandProperty SerialNumber } 
+    #$bios = $_.trim($bios)
+    if ((Test-Connection -ComputerName $computername -Count 1 -Quiet)   ) { # -and ($bios)
+        if ($bios) {
+            $InfoLabel.Text = $bios.trim()
+        } } else { #if (!( $bios  )) {
+            $InfoLabel.Text = "Unable to ping"        
+        }
     
+    <#
 try {
         if ((Test-Connection -ComputerName $computername -Count 1 -Quiet)   ) { # -and ($bios)
             if ($bios) {
@@ -81,14 +90,38 @@ try {
 } catch {
         $InfoLabel.Text = "an error occurred while testing the connection: $($Error[0].Exception.Message)"
     }
-
+#>
     #$PCname = $TextBox.Text
     #$InfoLabel.Text = $TextBox.Text
     #Write-Host $env:systemroot
     #$InfoLabel.Text = [string](Invoke-Command -ScriptBlock { Get-Date })
     # button click event handler code goes here
+    # }
+
 })
 $Form.Controls.Add($QButton)
+
+
+
+############# copy text to clipboard
+
+$CpyButton = New-Object System.Windows.Forms.Button
+$CpyButton.Text = "Copy text to clip board"
+$CpyButton.Location = New-Object System.Drawing.Point(130, 50)
+$CpyButton.Size = New-Object System.Drawing.Size(150, 30)
+$CpyButton.Add_Click({
+    [System.Windows.Forms.Clipboard]::SetText($InfoLabel.Text)   # SetText($TextBox.Text)
+})
+$Form.Controls.Add($CpyButton)
+
+############# copy text to clipboard
+
+
+
+
+
+
+
 
 ############# close window button at the bottom
 
@@ -101,6 +134,10 @@ $CButton.Add_Click({
 })
 $Form.Controls.Add($CButton)
 
+############# close window button at the bottom
+
+
+
 ############# create a label to show output of queries
 $InfoLabel = New-Object System.Windows.Forms.Label
 $InfoLabel.Text = "This is the new label"
@@ -110,7 +147,7 @@ $InfoLabel.BorderStyle = [System.Windows.Forms.BorderStyle]::FixedSingle
 $InfoLabel.AutoSize = $true
 
 $Form.Controls.Add($InfoLabel)
-
+############# create a label to show output of queries
 
 
 $Form.ShowDialog() | Out-Null

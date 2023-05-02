@@ -20,3 +20,4 @@ $customMMC = New-Object -ComObject MMC20.Application
 $customMMCFile = (Get-Item $mmcFileName).Fullname
 $customMMCDocument = $customMMC.Document.ActiveView
 $customMMCDocument.ExecuteShellCommand($importSettingsMenuItem.CommandID, "")
+
