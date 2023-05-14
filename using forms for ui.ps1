@@ -1,5 +1,4 @@
-﻿Add-Type -AssemblyName System.Windows.Forms, System.Drawing #, System.Management.Automation
-
+﻿
 
 
 <#
@@ -37,6 +36,7 @@ Tab controls: Organize content into tabs
 
 #$icon = New-Object System.Drawing.Icon([Environment]::SystemDirectory + "\moricons.dll, 3")
 #$form.Icon = [System.Windows.Media.Imaging.BitmapFrame]::Create($icon.ToBitmap())
+Add-Type -AssemblyName System.Windows.Forms, System.Drawing #, System.Management.Automation
 
 
 #############  setting an icon. just cuz (couldn't get the icon to work)

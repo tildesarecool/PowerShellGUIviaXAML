@@ -12,10 +12,27 @@
             <ColumnDefinition Width="160*"/>
             <ColumnDefinition Width="78*"/>
         </Grid.ColumnDefinitions>
-        <Label Content="Computer Name:" HorizontalAlignment="Left" Height="33" Margin="10,10,0,0" VerticalAlignment="Top" Width="107"/>
+        <Label Content="Target PC" HorizontalAlignment="Left" Height="23" Margin="47,10,0,0" VerticalAlignment="Top" Width="62"/>
         <TextBox x:Name="txtComputer" HorizontalAlignment="Left" Height="23" Margin="117,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="174" Grid.ColumnSpan="2"/>
-        <Button x:Name="btnQuery" Content="Query" HorizontalAlignment="Left" Margin="151,13,0,0" VerticalAlignment="Top" Width="75" Grid.Column="1" Grid.ColumnSpan="2"/>
-        <TextBox x:Name="txtResults" IsReadOnly="True" HorizontalAlignment="Left" Height="225" Margin="10,43,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="373" Grid.ColumnSpan="3"/>
+        <Button x:Name="btnQuery" Content="execute task" HorizontalAlignment="Left" Margin="144,13,0,0" VerticalAlignment="Top" Width="75" Grid.Column="1" Grid.ColumnSpan="2" Click="btnQuery_Click"/>
+        <TextBox x:Name="txtResults" IsReadOnly="True" HorizontalAlignment="Left" Height="30" Margin="10,238,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="373" Grid.ColumnSpan="3" RenderTransformOrigin="0.5,0.5">
+            <TextBox.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleX="0.246"/>
+                    <RotateTransform/>
+                    <TranslateTransform X="-0.482"/>
+                </TransformGroup>
+            </TextBox.RenderTransform>
+        </TextBox>
+        <Border BorderBrush="Black" BorderThickness="1" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="93" Margin="68,68,0,0" VerticalAlignment="Top" Width="148"/>
+        <CheckBox Grid.Column="1" Content="GP" HorizontalAlignment="Left" Margin="74,74,0,0" VerticalAlignment="Top" Width="89"/>
+        <CheckBox Grid.Column="1" Content="dell command update&#xD;&#xA;" HorizontalAlignment="Left" Margin="74,94,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="142" Height="17"/>
+        <Label Grid.Column="1" Content="Install: (applications list below)" HorizontalAlignment="Left" Margin="57,42,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="170"/>
+        <Label Content="display Laptop | desktop here" HorizontalAlignment="Left" Margin="10,55,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="162"/>
+        <Label Content="(canonical name here)" HorizontalAlignment="Left" Margin="10,86,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="162"/>
+        <Border BorderBrush="Black" BorderThickness="1" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="26" Margin="10,88,0,0" VerticalAlignment="Top" Width="162"/>
+        <Border BorderBrush="Black" BorderThickness="1" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="26" Margin="9,56,0,0" VerticalAlignment="Top" Width="163"/>
 
     </Grid>
 </Window>

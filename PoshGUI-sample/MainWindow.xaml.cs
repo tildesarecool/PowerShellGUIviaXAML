@@ -28,5 +28,10 @@ namespace PoshGUI_sample
         {
            // InitializeComponent();
         }
+
+        private void btnQuery_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
