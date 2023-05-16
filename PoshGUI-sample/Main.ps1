@@ -17,19 +17,24 @@ Function Get-FixedDisk {
     $DiskInfo = Get-WmiObject Win32_LogicalDisk -ComputerName $Computer -Filter 'DriveType=3'
    $DiskInfo
 }
+#Add-Type -AssemblyName PresentationFramework
 
 #where is the XAML file?
-$xamlFile = ".\MainWindow.xaml"
+$xamlFile = "C:\Users\Keith\Documents\repos\PowerShellGUIviaXAML\MyWindow.xaml"
 
 #create window
 $inputXML = Get-Content $xamlFile -Raw
-$inputXML = $inputXML -replace 'mc:Ignorable="d"', '' -replace "x:N", 'N' -replace '^<Win.*', '<Window'
+#$inputXML = $inputXML -replace 'mc:Ignorable="d"', '' -replace "x:N", 'N' -replace '^<Win.*', '<Window'
 [xml]$XAML = $inputXML
 #Read XAML
 
 $reader = (New-Object System.Xml.XmlNodeReader $xaml)
+
+#if ($reader) { Write-Host "good" }
+
 try {
     $window = [Windows.Markup.XamlReader]::Load( $reader )
+    
 }
 catch {
     Write-Warning $_.Exception
