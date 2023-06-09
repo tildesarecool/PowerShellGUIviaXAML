@@ -1,0 +1,44 @@
+<Viewbox Width="627" Height="142">
+    <Canvas Width="627" Height="142">
+        <Path Fill="#000000">
+            <Path.Data>
+                <PathGeometry>
+                    <PathFigure StartPoint="1568,1413">
+                        <PathBezierSegment Point1="2434,1413" Point2="4205,1413" Point3="4745,1413"/>
+                        <PathBezierSegment Point1="5607,1413" Point2="5869,1413" Point3="4302,1413"/>
+                    </PathFigure>
+                </PathGeometry>
+            </Path.Data>
+        </Path>
+        <Path Fill="#000000">
+            <Path.Data>
+                <PathGeometry>
+                    <PathFigure StartPoint="72,1283">
+                        <LineSegment Point="75,1215"/>
+                        <LineSegment Point="148,1212"/>
+                        <LineSegment Point="220,1209"/>
+                        <LineSegment Point="220,1280"/>
+                        <LineSegment Point="220,1350"/>
+                        <LineSegment Point="145,1350"/>
+                        <LineSegment Point="70,1350"/>
+                        <LineSegment Point="73,1283"/>
+                    </PathFigure>
+                    <PathFigure StartPoint="180,1335">
+                        <BezierSegment Point1="180,1332" Point2="168,1325" Point3="154,1322"/>
+                        <BezierSegment Point1="101,1315" Point2="101,1299" Point3="155,1299"/>
+                        <BezierSegment Point1="193,1299" Point2="201,1302" Point3="218,1334"/>
+                        <BezierSegment Point1="232,1355" Point2="232,1376" Point3="217,1376"/>
+                        <BezierSegment Point1="207,1376" Point2="203,1377" Point3="205,1381"/>
+                        <BezierSegment Point1="207,1384" Point2="218,1394" Point3="228,1403"/>
+                        <BezierSegment Point1="253,1425" Point2="253,1425" Point3="228,1425"/>
+                        <BezierSegment Point1="213,1425" Point2="209,1422" Point3="215,1418"/>
+                        <BezierSegment Point1="220,1415" Point2="227,1409" Point3="229,1404"/>
+                        <BezierSegment Point1="232,1399" Point2="232,1397" Point3="233,1400"/>
+                        <BezierSegment Point1="236,1407" Point2="254,1425" Point3="254,1425"/>
+                        <BezierSegment Point1="254,1425" Point2="253,1425" Point3="228,1425"/>
+                        <BezierSegment Point1="202,1425" Point2="181,1405" Point3="181,1381"/>
+                        <BezierSegment Point1="181,1363" Point2="191,1355" Point3="204,1362"/>
+                        <BezierSegment Point1="212,1366" Point2="220,1370" Point3="222,1370"/>
+                        <BezierSegment Point1="224,1370" Point2="225,1367" Point3="224,1364"/>
+                        <BezierSegment Point1="224,1362" Point2="214,1355" Point3="204,1349"/>
+                        <Bezier
