@@ -1,3 +1,8 @@
+# 9 June 2023
+# this actually works
+# but the window that pops up display anything at all
+
+
 Add-Type -AssemblyName PresentationFramework
 
 $jsonData = @"
@@ -52,11 +57,10 @@ $xaml = @"
 "@
 
 # Create a XAML reader and load the XAML code
-$xamlReader = New-Object System.Xml.XmlNodeReader -ArgumentList $xaml
-$window = [Windows.Markup.XamlReader]::Load($xamlReader)
-
-# Set the data context for the table
-$window.DataContext = $data
+$readerSettings = New-Object System.Xml.XmlReaderSettings
+$readerSettings.IgnoreWhitespace = $true
+$reader = [System.Xml.XmlReader]::Create([System.IO.StringReader]::new($xaml), $readerSettings)
+$window = [Windows.Markup.XamlReader]::Load($reader)
 
 # Show the window
-$window.ShowDialog() | Out-Null
+$window.ShowDialog()
